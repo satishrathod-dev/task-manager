@@ -12,7 +12,10 @@ const taskSchema = yup.object().shape({
     .string()
     .min(5, "Description must be at least 5 characters")
     .required("Description is required"),
-  dueDate: yup.date().required("Due date is required"),
+  dueDate: yup
+    .date()
+    .required("Please select a date")
+    .typeError("Please select a valid date"),
   priority: yup
     .string()
     .oneOf(["High", "Medium", "Low"], "Invalid priority")
@@ -53,7 +56,7 @@ const TaskForm = ({ initialData, onSubmit, onClose, mode }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white p-6 rounded-lg shadow-md w-1/3">
+      <div className="bg-white p-6 rounded-lg shadow-md w-11/12 md:w-1/3">
         <h3 className="text-lg font-semibold mb-4">
           {mode === "edit" ? "Edit Task" : "Create Task"}
         </h3>
@@ -90,6 +93,7 @@ const TaskForm = ({ initialData, onSubmit, onClose, mode }) => {
               type="date"
               {...register("dueDate")}
               className="w-full p-2 border rounded"
+              min={new Date().toISOString().split("T")[0]} // Restricts past dates
             />
             {errors.dueDate && (
               <p className="text-red-500 text-sm">{errors.dueDate.message}</p>
