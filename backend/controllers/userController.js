@@ -45,6 +45,7 @@ module.exports.loginUser = async (req, res, next) => {
         return res.status(404).json({message: "User not found"});
     }
 
+    
     const isMatch = await user.comparePassword(password);
 
     const token = user.generateAuthToken();

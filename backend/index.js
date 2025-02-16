@@ -29,6 +29,7 @@ app.get("/", (req, res) => {
     res.send("Hey there!");
 })
 
+
 app.use("/api", userRoutes)
 app.use("/api", taskRoutes)
 
