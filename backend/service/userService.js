@@ -1,6 +1,5 @@
 const userModel = require("../model/user.model");
 
-// Validate the data using express-validator:
 module.exports.createUser = async ({
     firstName, lastName, email, password
 }) => {
