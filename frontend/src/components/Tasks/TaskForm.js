@@ -99,7 +99,7 @@ const TaskForm = ({ initialData, onSubmit, onClose, mode }) => {
               <p className="text-red-500 text-sm">{errors.dueDate.message}</p>
             )}
           </div>
-
+          
           <div className="mb-4">
             <label className="block font-medium">Priority</label>
             <select
